@@ -176,7 +176,9 @@ img {
 .menu-link:focus {
   color: var(--accent-color);
 }
+
 /*decoration  */
+
 .menu-link::after {
   content: "";
   width: 100%;
@@ -194,6 +196,10 @@ img {
 .menu-link {
   position: relative;
 }
+.menu-link.active {
+  color: #404bbf;
+}
+
 /*==========/menu link========== */
 
 /*==========address========== */
