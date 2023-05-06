@@ -106,6 +106,7 @@ img {
 /*==========HEADER========== */
 
 .page-header {
+  z-index: 1;
   background-color: #ffffff;
   border-bottom: 1px solid #e7e9fc;
   box-shadow: 0px 2px 1px rgba(46, 47, 66, 0.08), 0px 1px 1px rgba(46, 47, 66, 0.16), 0px 1px 6px rgba(46, 47, 66, 0.08);
@@ -159,9 +160,10 @@ img {
 
 /*==========menu link========== */
 .menu-link {
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   display: block;
   padding-top: 24px;
-  padding-bottom: 24px;
+  padding-bottom: 23px;
 
   font-size: 16px;
   line-height: 1.5;
@@ -174,7 +176,26 @@ img {
 .menu-link:focus {
   color: var(--accent-color);
 }
+/*decoration  */
+.menu-link::after {
+  content: "";
+  width: 100%;
+  height: 4px;
+  position: absolute;
 
+  display: block;
+  border-radius: 2px;
+  bottom: -1px;
+}
+.menu-link.active::after {
+  background-color: #404bbf;
+}
+.menu-link.active {
+  color: #404bbf;
+}
+.menu-link {
+  position: relative;
+}
 /*==========/menu link========== */
 
 /*==========address========== */
@@ -196,8 +217,9 @@ img {
 }
 
 .address-contacts {
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   padding-top: 24px;
-  padding-bottom: 24px;
+  padding-bottom: 23px;
 
   font-weight: 400;
   font-size: 16px;
@@ -253,6 +275,7 @@ img {
 }
 
 .modal-btn {
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   display: block;
   margin-right: auto;
   margin-left: auto;
@@ -368,6 +391,8 @@ img {
 }
 
 .socials-link {
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -410,6 +435,8 @@ img {
 
 /* I c o n s  */
 .customers-link {
+  transition: color 250ms cubic-bezier(0.4, 0, 0.2, 1), border-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
   display: flex;
   justify-content: center;
   align-items: center;
@@ -435,7 +462,7 @@ img {
 
 /*==========/C U S T O M E R S ==========*/
 
-/*==========PAGE PORTFOLIO ==========*/
+/*==========P A G E      P O R T F O L I O ==========*/
 
 /*==========buttons portfolio========== */
 
@@ -451,6 +478,10 @@ img {
 }
 
 .filter .filter-btn {
+  transition: color, background, box-shadow, border;
+  transition-duration: 250ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+
   padding: 12px 24px;
 
   font-family: "Roboto", sans-serif;
@@ -524,6 +555,37 @@ img {
   border-color: #e7e9fc;
 }
 
+/* overlay portfolio card */
+
+.card-thumb-portfolio {
+  position: relative;
+
+  overflow: hidden;
+}
+
+.overlay-card-portfolio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translateY(100%);
+  transition: transform 250ms cubic-bezier(0.4, 0, 0.2, 1), box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
+
+  background-color: #4d5ae5;
+  padding: 40px 32px;
+  width: 100%;
+  height: 100%;
+}
+.overlay-text-portfolio {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  letter-spacing: 0.02em;
+  color: #f4f4fd;
+}
+.portfolio-cont:hover .overlay-card-portfolio {
+  transform: translateY(0);
+}
+
 /*==========FOOTER========== */
 
 .footer {
@@ -560,7 +622,7 @@ img {
 
 /* I c o n s */
 
-.wrapper-foorer {
+.wrapper-footer {
   display: flex;
   align-items: baseline;
 }
@@ -571,6 +633,7 @@ img {
 }
 
 .socials-footer-link {
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -588,4 +651,62 @@ img {
 .socials-footer-link:hover,
 .socials-footer-link:focus {
   background-color: #31d0aa;
+}
+
+/* M o d a l    w i n d o w */
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  transition: opacity 250ms, visibility 250ms;
+
+  background-color: rgba(46, 47, 66, 0.4);
+}
+.backdrop.is-hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.modal {
+  position: absolute;
+  top: calc(8.2%);
+  left: calc(50%);
+  transform: translate(-50%, 0%);
+
+  width: 408px;
+  height: 584px;
+  background-color: #fcfcfc;
+  box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.14), 0px 1px 3px rgba(0, 0, 0, 0.12), 0px 2px 1px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+}
+.modal-close-btn {
+  position: absolute;
+  right: 24px;
+  top: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  cursor: pointer;
+  background-color: #e7e9fc;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.modal-close-icon {
+  fill: #2e2f42;
+}
+.modal-close-btn:active {
+  background-color: #404bbf;
+  color: #ffffff;
+}
+.modal-close-icon {
+  fill: currentColor;
 }
